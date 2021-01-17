@@ -28,6 +28,10 @@ html( lang="en" )
             td{
                 padding: 2px 10px 2px 10px;
             }
+            thead{
+                font-weight: bold;
+                text-decoration: underline;
+            }
             .status {
                 padding: 10px;
             }
@@ -49,8 +53,14 @@ html( lang="en" )
                     td #{daemonStatus.commitId}    
         div.tx
             table
-                each tx in txList
+                thead
                     tr
-                        td.one= tx.fee
-                        td.two= tx.count
-                        td.three= tx.total
+                        td.one Fee
+                        td.two Tx count
+                        td.three Total Tx
+                tbody
+                    each tx in txList
+                        tr
+                            td.one= tx.fee
+                            td.two= tx.count
+                            td.three= tx.total
