@@ -1,0 +1,29 @@
+doctype
+html( lang="en" )
+    head
+        title Baking Bootstrap Snippets with Jade
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+        style(type='text/css').
+            body {
+                padding-top: 10px;
+                column-count:12;
+                -moz-column-count:12;
+                -webkit-column-count:12;
+                }
+            .one {
+                background-color: #deede6;
+            }
+            .two {
+                background-color: #f5f3e7;
+            }
+ 
+    body(style="padding-bottom:10rem;")
+        table.table
+            each tx in liste
+                tr
+                    td.one= tx.fee
+                    td.two= tx.count
