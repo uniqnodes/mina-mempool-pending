@@ -52,7 +52,7 @@ const operationsDoc = `
       blockchainLength
       highestBlockLengthReceived
       syncStatus
-      uptimeSecs
+      commitId
     }
     pooledUserCommands {
       fee
@@ -90,6 +90,12 @@ async function startFetchMyQuery() {
     return parseFloat(a.fee) - parseFloat(b.fee);
   }).reverse()
 
+  var subCount = 0;
+  sortedTxList.forEach(function (data, index) {
+    subCount = subCount + data.count;
+    sortedTxList[index].total = subCount;
+  })
+
   var result = {
     TxList: sortedTxList,
     DaemonStatus: data.daemonStatus
@@ -97,5 +103,3 @@ async function startFetchMyQuery() {
 
   return await result;
 }
-
-// startFetchMyQuery();
