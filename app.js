@@ -22,8 +22,9 @@ app.use(stylus.middleware(
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', async (req, res) => {
+  var data = await startFetchMyQuery();
   res.render('index',
-    { liste: await startFetchMyQuery() }
+    { txList: data.TxList, daemonStatus: data.DaemonStatus }
   )
 })
 app.listen(3743)
@@ -47,6 +48,12 @@ async function fetchGraphQL(operationsDoc, operationName, variables) {
 
 const operationsDoc = `
   query MyQuery {
+    daemonStatus {
+      blockchainLength
+      highestBlockLengthReceived
+      syncStatus
+      uptimeSecs
+    }
     pooledUserCommands {
       fee
     }
@@ -75,15 +82,20 @@ async function startFetchMyQuery() {
     return r;
   }, {});
 
-  var result = Object.keys(occurences).map(function (key) {
-    return { fee: parseInt(key) / 1000000000, count: occurences[key] };
+  var txList = Object.keys(occurences).map(function (key) {
+    return { fee: parseFloat(parseInt(key) / 1000000000).toFixed(2), count: occurences[key] };
   });
 
-  var sorted = result.sort(function (a, b) {
+  var sortedTxList = txList.sort(function (a, b) {
     return parseFloat(a.fee) - parseFloat(b.fee);
   }).reverse()
 
-  return await sorted;
+  var result = {
+    TxList: sortedTxList,
+    DaemonStatus: data.daemonStatus
+  }
+
+  return await result;
 }
 
-startFetchMyQuery();
+// startFetchMyQuery();
