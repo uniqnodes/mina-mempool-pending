@@ -1,3 +1,5 @@
+//- extend layout
+
 doctype
 html( lang="en" )
     head
@@ -5,11 +7,11 @@ html( lang="en" )
         meta( charset='utf-8' )
         meta( http-equiv='X-UA-Compatible', content='IE=edge' )
         meta( name='viewport', content='width=device-width, initial-scale=1.0' )
-        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        meta( name='description', content='Mina Protocol Mempool - Pending Transactions' )
         link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
         style(type='text/css').
-            body {
-                padding-top: 10px;
+            .tx {
+                padding: 0 0 15px 15px;
                 column-count:12;
                 -moz-column-count:12;
                 -webkit-column-count:12;
@@ -20,10 +22,31 @@ html( lang="en" )
             .two {
                 background-color: #f5f3e7;
             }
+            td{
+                padding: 2px 10px 2px 10px;
+            }
+            .status {
+                padding: 10px;
+            }
  
     body(style="padding-bottom:10rem;")
-        table.table
-            each tx in liste
+        div.status
+            table
                 tr
-                    td.one= tx.fee
-                    td.two= tx.count
+                    td Blockchain Length:
+                    td #{daemonStatus.blockchainLength}
+                tr
+                    td Highest Block Length Received:
+                    td #{daemonStatus.highestBlockLengthReceived}
+                tr
+                    td Sync Status:
+                    td #{daemonStatus.syncStatus}
+                tr
+                    td Up Since:
+                    td #{daemonStatus.uptimeSecs}    
+        div.tx
+            table
+                each tx in txList
+                    tr
+                        td.one= tx.fee
+                        td.two= tx.count
