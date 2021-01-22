@@ -32,6 +32,17 @@ html( lang="en" )
                     -webkit-column-count:2;
                 }
             }
+            @media screen and (max-width: 375px) {
+                .tx {
+                    padding: 0;
+                    column-count:1;
+                    -moz-column-count:1;
+                    -webkit-column-count:1;
+                }
+                .tx table {
+                    width: 100%;
+                }
+            }
             .one {
                 background-color: #deede6;
             }
