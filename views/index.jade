@@ -15,7 +15,23 @@ html( lang="en" )
                 column-count:8;
                 -moz-column-count:8;
                 -webkit-column-count:8;
+            }
+            @media screen and (max-width: 992px) {
+                .tx {
+                    padding: 0 0 15px 15px;
+                    column-count:4;
+                    -moz-column-count:4;
+                    -webkit-column-count:4;
                 }
+            }
+            @media screen and (max-width: 600px) {
+                .tx {
+                    padding: 0 0 15px 15px;
+                    column-count:2;
+                    -moz-column-count:2;
+                    -webkit-column-count:2;
+                }
+            }
             .one {
                 background-color: #deede6;
             }
@@ -35,7 +51,9 @@ html( lang="en" )
             .status {
                 padding: 10px;
             }
- 
+            .status td {
+                word-break: break-all;
+            }
     body(style="padding-bottom:10rem;")
         div.status
             table
@@ -50,7 +68,10 @@ html( lang="en" )
                     td #{daemonStatus.syncStatus}
                 tr
                     td Commit ID:
-                    td #{daemonStatus.commitId}    
+                    td #{daemonStatus.commitId}
+                tr
+                    td Chain ID:
+                    td #{daemonStatus.chainId}
         div.tx
             table
                 thead
