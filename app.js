@@ -31,7 +31,7 @@ app.listen(3743)
 
 async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch(
-    "http://95.111.236.24:8000/graphql",
+    "http://144.91.71.82:8000/graphql",
     {
       method: "POST",
       body: JSON.stringify({
@@ -53,6 +53,7 @@ const operationsDoc = `
       highestBlockLengthReceived
       syncStatus
       commitId
+      chainId
     }
     pooledUserCommands {
       fee
