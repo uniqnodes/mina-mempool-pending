@@ -31,7 +31,7 @@ app.listen(3743)
 
 async function fetchGraphQL(operationsDoc, operationName, variables) {
   const result = await fetch(
-    "http://144.91.71.82:8000/graphql",
+    "http://161.97.160.187:8000/graphql",
     {
       method: "POST",
       body: JSON.stringify({
